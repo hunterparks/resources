@@ -1,0 +1,15 @@
+body {
+    display: grid;
+    font-family: sans-serif;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    padding: 1rem;
+}
+
+body main {
+    padding-block-start: 2rem;
+}
+
+body footer {
+    padding-block-start: 2rem;
+}

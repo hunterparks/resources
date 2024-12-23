@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content="Powered by 🥔" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/docs/css/reset.css">
+    <link rel="stylesheet" href="/docs/css/style.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 0.25rem solid white;
+            border-color: light-dark(black, white);
+            font-size: 2rem;
+        }
+
+        table thead {
+            border: 0.25rem solid white;
+            border-color: light-dark(black, white);
+        }
+
+        table th,
+        table td {
+            border: 0.125rem solid white;
+            border-color: light-dark(black, white);
+            width: 20rem;
+        }
+
+        table th:first-child,
+        table td:first-child {
+            width: 16rem;
+        }
+
+        table td:not(:first-child) {
+            text-align: center;
+        }
+    </style>
+    <title>Resources - 3D Printer Filament Drying Times</title>
+</head>
+
+<body>
+    <header>
+        <a href="/docs">&lt; back</a>
+        <a href="/docs">
+            <h1>Resources</h1>
+        </a>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Material</th>
+                    <th>Dryer Temp</th>
+                    <th>Drying Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>PLA</td>
+                    <td rowspan="2">
+                        52&deg;C (125&deg;F)
+                    </td>
+                    <td>~ 4h</td>
+                </tr>
+                <tr>
+                    <td>PVA</td>
+                    <td>~ 4h</td>
+                </tr>
+                <tr>
+                    <td>TPU</td>
+                    <td rowspan="2">
+                        57&deg;C (135&deg;F)
+                    </td>
+                    <td>~ 6h</td>
+                </tr>
+                <tr>
+                    <td>PP</td>
+                    <td>~ 8h</td>
+                </tr>
+                <tr>
+                    <td>PETG</td>
+                    <td>63&deg;C (145&deg;F)</td>
+                    <td>~ 8h</td>
+                </tr>
+                <tr>
+                    <td>Nylon</td>
+                    <td rowspan="5">
+                        74&deg;C (165&deg;F)
+                    </td>
+                    <td>~ 6h</td>
+                </tr>
+                <tr>
+                    <td>ABS</td>
+                    <td>~ 6h</td>
+                </tr>
+                <tr>
+                    <td>ASA</td>
+                    <td>~ 6h</td>
+                </tr>
+                <tr>
+                    <td>PC</td>
+                    <td>~ 12h</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i>Silica Gel</i>
+                    </td>
+                    <td>> 12h</td>
+                </tr>
+                <tr>
+                    <td>HIPS</td>
+                    <td>Drying not needed</td>
+                    <td>n/a</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        &copy;
+        <script>document.write(new Date().getFullYear())</script>
+    </footer>
+</body>
+
+</html>
