@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content="Powered by 🥔" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/resources/css/reset.css">
+    <link rel="stylesheet" href="/resources/css/style.css">
+    <title>Resources - Cleaning Calendar</title>
+    <script>
+        Date.prototype.getWeek = function (dowOffset) {
+            dowOffset = typeof (dowOffset) === 'number' ? dowOffset : 0;
+            let newYear = new Date(this.getFullYear(), 0, 1);
+            let day = newYear.getDay() - dowOffset;
+            day = (day >= 0 ? day : day + 7);
+            let dayNum = Math.floor((this.getTime() - newYear.getTime() - (this.getTimezoneOffset() - newYear.getTimezoneOffset()) * 60000) / 86400000) + 1;
+            let weekNum;
+            if (day < 4) {
+                weekNum = Math.floor((dayNum + day - 1) / 7) + 1;
+                if (weekNum > 52) {
+                    let nYear = new Date(this.getFullYear() + 1, 0, 1);
+                    let nDay = nYear.getDay() - dowOffset;
+                    nDay = nDay >= 0 ? nDay : nDay + 7;
+                    weekNum = nDay < 4 ? 1 : 53;
+                }
+            } else {
+                weekNum = Math.floor((dayNum + day - 1) / 7);
+            }
+            return weekNum - 1;
+        }
+    </script>
+    <script defer>
+        const now = new Date();
+        const currentDay = now.getDay();
+        const currentMonth = now.getMonth();
+        const currentWeek = now.getWeek();
+        const currentTaskWeek = currentWeek % 4;
+        const DAY = {
+            SUNDAY: 0,
+            MONDAY: 1,
+            TUESDAY: 2,
+            WEDNESDAY: 3,
+            THURSDAY: 4,
+            FRIDAY: 5,
+            SATURDAY: 6
+        };
+        const MONTH = {
+            JANUARY: 0,
+            FEBRUARY: 1,
+            MARCH: 2,
+            APRIL: 3,
+            MAY: 4,
+            JUNE: 5,
+            JULY: 6,
+            AUGUST: 7,
+            SEPTEMBER: 8,
+            OCTOBER: 9,
+            NOVEMBER: 10,
+            DECEMBER: 11,
+        };
+        const MONTHLY_TASKS = {
+            [MONTH.JANUARY]: 'January: Wipe down inside of kitchen cabinets and drawers',
+            [MONTH.FEBRUARY]: 'February: Organize closets/pantry',
+            [MONTH.MARCH]: 'March: Wipe down inside of bathroom cabinets and drawers',
+            [MONTH.APRIL]: 'April: Carport/garage',
+            [MONTH.MAY]: 'May: Outside of house',
+            [MONTH.JUNE]: 'June: Walls, moldings, doors',
+            [MONTH.JULY]: 'July: Shampoo carpet',
+            [MONTH.AUGUST]: 'August: Windows/window sills',
+            [MONTH.SEPTEMBER]: 'September: Blinds and window treatments',
+            [MONTH.OCTOBER]: 'October: Carport/garage',
+            [MONTH.NOVEMBER]: 'November: Move refrigerator/oven',
+            [MONTH.DECEMBER]: 'December: Walls, moldings, doors',
+        };
+        const WEEKLY_TASKS = {
+            0: '1st Week: Appliances',
+            1: '2nd Week: Furniture and cabinets',
+            2: '3rd Week: Wash rugs, etc.',
+            3: `4th Week: Monthly task<ul><li>${MONTHLY_TASKS[currentMonth]}</li></ul>`,
+        };
+        const DAILY_TASKS = {
+            [DAY.SUNDAY]: "It's Sunday, take a day of rest!",
+            [DAY.MONDAY]: 'Monday: Vacuum/mop floors',
+            [DAY.TUESDAY]: `Tuesday: Weekly task<ul><li>${WEEKLY_TASKS[currentTaskWeek]}</li></ul>`,
+            [DAY.WEDNESDAY]: 'Wednesday: Dust',
+            [DAY.THURSDAY]: 'Thursday: Bathrooms',
+            [DAY.FRIDAY]: 'Friday: Laundry',
+            [DAY.SATURDAY]: 'Saturday: Catch-up',
+        };
+        document.addEventListener('DOMContentLoaded', () => {
+            const todayIs = document.querySelector('#today-is');
+            todayIs.textContent = new Intl.DateTimeFormat('en-US', {
+                dateStyle: 'full'
+            }).format(now);
+            const dailyTasks = document.querySelector('#daily-tasks');
+            const dailyTask = document.createElement('li');
+            dailyTask.innerHTML = DAILY_TASKS[currentDay];
+            dailyTasks.append(dailyTask);
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <a href="/resources">&lt; back</a>
+        <a href="/resources">
+            <h1>Resources</h1>
+        </a>
+    </header>
+    <main>
+        <section>
+            <h2>Cleaning Calendar</h2>
+            <h3>
+                Today is:
+                <span id="today-is" style="font-weight: normal;"></span>
+            </h3>
+        </section>
+        <section>
+            <h2>Cleaning Tasks</h2>
+            <ul>
+                <li>Morning Tasks</li>
+                <ul>
+                    <li>Make beds</li>
+                    <li>De-clutter bedrooms</li>
+                    <li>De-clutter bathrroms</li>
+                </ul>
+                <li>Daily Tasks</li>
+                <ul id="daily-tasks"></ul>
+                <li>Evening Tasks</li>
+                <ul>
+                    <li>De-clutter living areas</li>
+                    <li>Quick sweep or mop in kitchen</li>
+                    <li>Wipe down kitchen counters and table</li>
+                    <li>Do the dishes</li>
+                    <li>Take out trash</li>
+                </ul>
+            </ul>
+        </section>
+        <section>
+            <p>
+                Image reference:
+                <br />
+                <img width="480px" src="/resources/img/cleaning-calendar/cleaning-calendar.jpg"
+                    alt="Cleaning calendar schedule.">
+            </p>
+        </section>
+    </main>
+    <footer>
+        &copy;
+        <script>document.write(new Date().getFullYear())</script>
+    </footer>
+</body>
+
+</html>
